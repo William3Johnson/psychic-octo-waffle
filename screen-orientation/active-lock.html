@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="/resources/testdriver.js"></script>
+<script src="/resources/testdriver-vendor.js"></script>
+<p id="#fragment"></p>
+<script type="module">
+  import { makeCleanup } from "./resources/orientation-utils.js";
+  promise_test(async (t) => {
+    t.add_cleanup(makeCleanup());
+    await test_driver.bless("request full screen");
+    await document.documentElement.requestFullscreen();
+    const orientation = screen.orientation.type.startsWith("portrait")
+      ? "landscape"
+      : "portrait";
+    const p = screen.orientation.lock(orientation);
+    window.location.href = "#fragment";
+    await p;
+  }, "When performing a fragment navigation, the change must not abort");
+</script>
