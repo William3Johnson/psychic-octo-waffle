@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # Checks out the repository this file is in
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     # Logs in with your Azure credentials
     - name: Azure login
@@ -114,7 +114,7 @@ jobs:
     needs: [buildImage, createSecret]
     steps:
     # Checks out the repository this file is in
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     # Logs in with your Azure credentials
     - name: Azure login
